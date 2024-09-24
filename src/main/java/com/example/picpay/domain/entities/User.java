@@ -5,21 +5,17 @@ import com.example.picpay.domain.entities.enums.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@Table(name = "users")
 @NoArgsConstructor
 @Entity
-@Table(name = "User")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotEmpty(message = "{campo.nome-user.obrigatorio}")
     private String nome;
@@ -36,5 +32,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType tipo;
+
 
 }

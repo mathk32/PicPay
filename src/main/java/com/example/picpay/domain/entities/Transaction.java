@@ -2,33 +2,33 @@ package com.example.picpay.domain.entities;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Transaction")
+@Table(name = "transactions")
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
 
-    @NotEmpty
+    @NotNull
+    @JoinColumn(name = "userpaye_id")
+    @ManyToOne
     private User paye;
 
-    @NotEmpty
+    @NotNull
+    @JoinColumn(name = "userpayee_id")
+    @ManyToOne
     private User payee;
 
     private BigDecimal value;
