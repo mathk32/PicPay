@@ -1,1 +1,1 @@
-# PIcPay
+# PicPay
