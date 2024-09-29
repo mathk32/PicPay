@@ -4,6 +4,7 @@ package com.example.picpay.rest;
 import com.example.picpay.domain.entities.User;
 import com.example.picpay.domain.entities.enums.UserType;
 import com.example.picpay.domain.repository.UserR;
+import com.example.picpay.rest.service.impl.UserServiceImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserR userRepository;
+    private UserServiceImp userService;
 
 
     @PostMapping
@@ -23,7 +24,7 @@ public class UserController {
         if(user.getTipo() == null){
             user.setTipo(UserType.COMUM);
         }
-        userRepository.save(user);
+        userService.save_user(user);
         return user.getId();
     }
 
